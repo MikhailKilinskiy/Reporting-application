@@ -1,0 +1,10 @@
+org\dao\DaoInterface.class
+org\model\Order.class
+org\dao\CreateData.class
+org\model\OrganisationType.class
+org\service\ExportReportStrategy.class
+org\dao\GenericDao.class
+org\model\Supplier.class
+org\model\Organisation.class
+org\model\Product.class
+org\model\Customer.class

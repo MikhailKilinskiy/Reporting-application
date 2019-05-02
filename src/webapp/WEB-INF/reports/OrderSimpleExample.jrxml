@@ -1,0 +1,180 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN"
+        "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+              xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd"
+              name="report name" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20"
+              topMargin="20" bottomMargin="20">
+
+    <queryString>
+        <![CDATA[SELECT
+                 Ord.OrderDate,
+                 Cust.FullName as Customer,
+                 Sup.FullName as Supplier,
+                 Prod.name as Product,
+                 Prod.Quantity*Prod.Price as SumPrice
+
+              FROM [JavaDB].[dbo].[Orders] Ord
+              JOIN [JavaDB].[dbo].[Organisations] Cust
+              ON Ord.customer_Id = Cust.Id AND Cust.OrganisationType = 'CUSTOMER'
+              JOIN [JavaDB].[dbo].[Organisations] Sup
+              ON Ord.supplier_Id = Sup.Id AND Sup.OrganisationType = 'SUPPLIER'
+              JOIN [JavaDB].[dbo].[Products] Prod
+              ON Ord.id = Prod.order_Id]]>
+    </queryString>
+
+    <field name = "OrderDate" class = "java.util.Date">
+        <fieldDescription><![CDATA[OrderDate]]></fieldDescription>
+    </field>
+
+    <field name = "Customer" class = "java.lang.String">
+        <fieldDescription><![CDATA[Customer]]></fieldDescription>
+    </field>
+
+    <field name = "Supplier" class = "java.lang.String">
+        <fieldDescription><![CDATA[Supplier]]></fieldDescription>
+    </field>
+
+    <field name = "Product" class = "java.lang.String">
+        <fieldDescription><![CDATA[Product]]></fieldDescription>
+    </field>
+
+    <field name = "SumPrice" class = "java.math.BigDecimal">
+        <fieldDescription><![CDATA[SumPrice]]></fieldDescription>
+    </field>
+
+    <columnHeader>
+        <band height = "23" splitType="Stretch">
+
+            <staticText>
+                <reportElement mode = "Opaque" x = "0" y = "3"
+                               width = "535" height = "15" backcolor = "#70A9A9" />
+
+                <box>
+                    <bottomPen lineWidth = "1.0" lineColor = "#CCCCCC" />
+                </box>
+
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement mode="Opaque" x="100" y="2" width="84" height="20" backcolor="#999999"/>
+
+                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                    <font isBold = "true" />
+                </textElement>
+                <text><![CDATA[OrderDate]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement mode="Opaque" x="100" y="2" width="84" height="20" backcolor="#999999"/>
+
+                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                    <font isBold = "true" />
+                </textElement>
+                <text><![CDATA[Customer]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement mode="Opaque" x="100" y="2" width="84" height="20" backcolor="#999999"/>
+
+                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                    <font isBold = "true" />
+                </textElement>
+                <text><![CDATA[Supplier]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement mode="Opaque" x="100" y="2" width="84" height="20" backcolor="#999999"/>
+
+                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                    <font isBold = "true" />
+                </textElement>
+                <text><![CDATA[Product]]></text>
+            </staticText>
+
+            <staticText>
+                <reportElement mode="Opaque" x="100" y="2" width="84" height="20" backcolor="#999999"/>
+
+                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                    <font isBold = "true" />
+                </textElement>
+                <text><![CDATA[SumPrice]]></text>
+            </staticText>
+
+        </band>
+    </columnHeader>
+
+    <detail>
+        <band height = "23" splitType="Stretch">
+
+            <staticText>
+                <reportElement mode="Opaque" x="100" y="2" width="84" height="20" backcolor="#999999"/>
+
+                <box>
+                    <bottomPen lineWidth = "0.25" lineColor = "#CCCCCC" />
+                </box>
+
+                <textElement textAlignment="Center" verticalAlignment="Middle">
+                    <font isBold="true" isItalic="true"/>
+                </textElement>
+                <text><![CDATA[]]> </text>
+            </staticText>
+
+            <textField>
+                <reportElement mode="Opaque" x="100" y="2" width="84" height="20" backcolor="#999999"/>
+
+                <textElement textAlignment = "Center" verticalAlignment = "Middle">
+                    <font size = "9" />
+                </textElement>
+
+                <textFieldExpression class = "java.util.Date">
+                    <![CDATA[$F{OrderDate}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement mode="Opaque" x="100" y="2" width="84" height="20" backcolor="#999999"/>
+                <textElement textAlignment = "Center" verticalAlignment = "Middle" />
+
+                <textFieldExpression class = "java.lang.String">
+                    <![CDATA[$F{Customer}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement mode="Opaque" x="100" y="2" width="84" height="20" backcolor="#999999"/>
+                <textElement textAlignment = "Center" verticalAlignment = "Middle" />
+
+                <textFieldExpression class = "java.lang.String">
+                    <![CDATA[$F{Supplier}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement mode="Opaque" x="100" y="2" width="84" height="20" backcolor="#999999"/>
+                <textElement textAlignment = "Center" verticalAlignment = "Middle" />
+
+                <textFieldExpression class = "java.lang.String">
+                    <![CDATA[$F{Product}]]>
+                </textFieldExpression>
+            </textField>
+
+            <textField>
+                <reportElement mode="Opaque" x="100" y="2" width="84" height="20" backcolor="#999999"/>
+                <textElement textAlignment = "Center" verticalAlignment = "Middle" />
+
+                <textFieldExpression class = "java.math.BigDecimal">
+                    <![CDATA[$F{SumPrice}]]>
+                </textFieldExpression>
+            </textField>
+
+        </band>
+    </detail>
+
+</jasperReport>

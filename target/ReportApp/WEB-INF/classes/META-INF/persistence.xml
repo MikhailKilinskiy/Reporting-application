@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://java.sun.com/xml/ns/persistence" version="1.0">
+    <persistence-unit name="test">
+        <class>org.model.Organisation</class>
+        <class>org.model.Customer</class>
+        <class>org.model.Supplier</class>
+        <class>org.model.Order</class>
+        <class>org.model.Product</class>
+
+        <properties>
+            <property name="hibernate.connection.url" value="jdbc:sqlserver://localhost\SQLEXPRESS;Trusted_Connection=true;databaseName=JavaDB"/>
+            <property name="hibernate.connection.driver_class" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>
+            <property name="hibernate.dialect" value="org.hibernate.dialect.SQLServerDialect"/>
+            <property name="hibernate.connection.username" value="Juser"/>
+            <property name="hibernate.connection.password" value="123456"/>
+            <property name="hibernate.connection.autocommit" value="true"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.current_session_context_class" value="thread"/>
+            <property name="hibernate.connection.pool_size" value="10"/>
+            <property name="hibernate.hbm2ddl.auto" value="update"/>
+        </properties>
+    </persistence-unit>
+</persistence>
